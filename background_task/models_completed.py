@@ -8,7 +8,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.six import python_2_unicode_compatible
 
-from background_task.models import Task
+from .base_models import Task
 
 
 class CompletedTaskQuerySet(models.QuerySet):
@@ -94,6 +94,11 @@ class CompletedTask(models.Model):
     creator = GenericForeignKey('creator_content_type', 'creator_object_id')
 
     objects = CompletedTaskQuerySet.as_manager()
+
+
+    class Meta:
+        # db_table = 'background_task'
+        app_label = 'background_task'
 
     def locked_by_pid_running(self):
         """
