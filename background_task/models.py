@@ -328,4 +328,5 @@ class Task(models.Model):
         return u'{}'.format(self.verbose_name or self.task_name)
 
     class Meta:
-        db_table = 'background_task'
+        # db_table = 'background_task'
+        app_label = 'background_task'
